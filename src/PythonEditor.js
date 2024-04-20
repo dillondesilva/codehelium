@@ -7,6 +7,10 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import { loadPyodide } from "pyodide";
 import { useRef, useState } from "react";
 
+import TerminalIcon from '@mui/icons-material/Terminal';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import CodeIcon from '@mui/icons-material/Code';
+
 async function runPyodideExecution(codeString) {
     let pyodide = await loadPyodide({
         indexURL: "./pyodide/"
@@ -18,14 +22,14 @@ async function runPyodideExecution(codeString) {
 
     pyodide.setStdout({ 
         batched: (msg) => {
-            let outputLine = "> " + msg + "\n";
+            let outputLine = msg;
             execData.logs.push(outputLine);
         } 
     });
 
     pyodide.setStderr({ 
         batched: (msg) => {
-            let outputLine = "> " + msg + "\n";
+            let outputLine = msg;
             execData.logs.push(outputLine);
         } 
     });
@@ -33,7 +37,7 @@ async function runPyodideExecution(codeString) {
     try {
         await pyodide.runPythonAsync(codeString);
     } catch (e) {
-        let outputLine = "> " + e.message + "\n";
+        let outputLine = e.message;
         execData.logs.push(outputLine);
     }
 
@@ -43,22 +47,17 @@ async function runPyodideExecution(codeString) {
 export default function PythonEditor(props) {
     const [isCodeRunning, setIsCodeRunning] = useState(false);
     const [isConsoleActive, setIsConsoleActive] = useState(false);
-    const [consoleValue, setConsoleValue] = useState([]);
+    const [consoleValue, setConsoleValue] = useState(props.consoleValue);
     const [editorValue, setEditorValue] = useState("");
     const editorRef = useRef('editorRef');
-    // hello_python().then((result) => {
-    //     console.log("Python says that 1+1 =", result);
-    // });
 
     const runCode = async () => {
-        // console.log("Running code now");
         setIsCodeRunning(true);
-        setIsConsoleActive(true);   
+        setIsConsoleActive(true); 
         await runPyodideExecution(editorValue).then((result) => {
             setConsoleValue(result.logs);
         });
-        // console.log("VALUE IS")
-        // console.log(consoleValue);
+
         setIsCodeRunning(false);
     }
 
@@ -80,7 +79,7 @@ export default function PythonEditor(props) {
                     {
                         consoleValue.map((line) => {
                             return (
-                                <p className="text-white font-mono">{line}</p>
+                                <p className="text-white font-mono">&gt; {line}</p>
                             )
                         })
                     }
@@ -102,6 +101,7 @@ export default function PythonEditor(props) {
                     showLineNumbers: true,
                     tabSize: 2
                 }}
+                showPrintMargin={false}
                 style={{
                     borderBottomLeftRadius: "12px",
                     borderBottomRightRadius: "12px"
@@ -115,20 +115,20 @@ export default function PythonEditor(props) {
         if (isCodeRunning) {
             return (
                 <div
-                className="inline-block h-8 w-8 animate-spin rounded-full border-4 \
+                className="inline-block h-6 w-6 animate-spin rounded-full border-4 \
                 border-solid border-current border-e-transparent align-center border-cyan-400 \
                 text-surface motion-reduce:animate-[spin_1s_linear_infinite] dark:text-white"
                 />
             )
         } else {
             return (
-                <button 
-                className="rounded-md bg-white flex flex-row px-2 py-[0.5] justify-center place-content-center"
+                <button
+                className="rounded-md bg-zinc-700 flex flex-row px-2 py-[0.5] \
+                justify-center border-2 place-content-center"
                 onClick={runCode}
                 >
-                    <div>
-                        <p>Run</p>
-                    </div>
+                    <PlayArrowIcon className="pr-1 text-white" />
+                    <p className="text-white">Run</p>
                 </button> 
             )
         }
@@ -138,19 +138,32 @@ export default function PythonEditor(props) {
         <div>
             <div className="h-full">
                 <div 
-                className={`h-[6.25vh] bg-zinc-700 rounded-t-[12px] flex justify-end items-center`}
+                className={`h-[6.5vh] bg-zinc-700 rounded-t-[12px] flex justify-end space-evenly items-center`}
                 style={{
                     width: props.width
-                }}
+                }}  
                 >
-                    <div className="pr-2">
+                     <div className="pr-3">
                         <button 
-                            className="rounded-md bg-white px-2 py-[0.5] justify-center place-content-center"
+                            className="rounded-md bg-zinc-700 px-2 \
+                            border-2 justify-center place-content-center flex flex-row"
+                            onClick={() => setIsConsoleActive(false)}
                         >
-                            <p>Console</p>
+                            <CodeIcon className="pr-1 text-white" />
+                            <p className="text-white">Code</p>
                         </button>
                     </div>
-                    <div className="pr-2">
+                    <div className="pr-3">
+                        <button 
+                            className="rounded-md bg-zinc-700 px-2 \
+                            border-2 justify-center place-content-center flex flex-row"
+                            onClick={() => setIsConsoleActive(true)}
+                        >
+                            <TerminalIcon className="pr-1 text-white" />
+                            <p className="text-white">Console</p>
+                        </button>
+                    </div>
+                    <div className="pr-3">
                         {
                             renderRunCodeBtn()
                         }
