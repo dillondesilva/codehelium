@@ -1,6 +1,6 @@
 {
   "name": "wasm-react-editor",
-  "homepage": "https://dillondesilva.github.io/wasm-code-editor",
+  "homepage": "https://dillondesilva.github.io/codehelium",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
