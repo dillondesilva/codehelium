@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/wasm-code-editor/static/css/main.40ad4ea6.css",
-    "main.js": "/wasm-code-editor/static/js/main.7117b782.js",
-    "static/js/464.96b3f8b0.chunk.js": "/wasm-code-editor/static/js/464.96b3f8b0.chunk.js",
-    "static/js/425.e88b61b4.chunk.js": "/wasm-code-editor/static/js/425.e88b61b4.chunk.js",
-    "static/js/541.cf4a1b33.chunk.js": "/wasm-code-editor/static/js/541.cf4a1b33.chunk.js",
-    "static/js/190.fa163c03.chunk.js": "/wasm-code-editor/static/js/190.fa163c03.chunk.js",
-    "static/js/624.fb3d0019.chunk.js": "/wasm-code-editor/static/js/624.fb3d0019.chunk.js",
-    "static/js/912.1980885c.chunk.js": "/wasm-code-editor/static/js/912.1980885c.chunk.js",
-    "static/js/498.472cd187.chunk.js": "/wasm-code-editor/static/js/498.472cd187.chunk.js",
-    "static/js/363.36ca64de.chunk.js": "/wasm-code-editor/static/js/363.36ca64de.chunk.js",
-    "static/js/271.30a3e1e4.chunk.js": "/wasm-code-editor/static/js/271.30a3e1e4.chunk.js",
-    "static/js/453.de89cf96.chunk.js": "/wasm-code-editor/static/js/453.de89cf96.chunk.js",
-    "index.html": "/wasm-code-editor/index.html",
-    "main.40ad4ea6.css.map": "/wasm-code-editor/static/css/main.40ad4ea6.css.map",
-    "main.7117b782.js.map": "/wasm-code-editor/static/js/main.7117b782.js.map",
-    "541.cf4a1b33.chunk.js.map": "/wasm-code-editor/static/js/541.cf4a1b33.chunk.js.map",
-    "453.de89cf96.chunk.js.map": "/wasm-code-editor/static/js/453.de89cf96.chunk.js.map"
+    "main.css": "/codehelium/static/css/main.40ad4ea6.css",
+    "main.js": "/codehelium/static/js/main.b971fc33.js",
+    "static/js/464.96b3f8b0.chunk.js": "/codehelium/static/js/464.96b3f8b0.chunk.js",
+    "static/js/425.e88b61b4.chunk.js": "/codehelium/static/js/425.e88b61b4.chunk.js",
+    "static/js/541.cf4a1b33.chunk.js": "/codehelium/static/js/541.cf4a1b33.chunk.js",
+    "static/js/190.fa163c03.chunk.js": "/codehelium/static/js/190.fa163c03.chunk.js",
+    "static/js/624.fb3d0019.chunk.js": "/codehelium/static/js/624.fb3d0019.chunk.js",
+    "static/js/912.1980885c.chunk.js": "/codehelium/static/js/912.1980885c.chunk.js",
+    "static/js/498.472cd187.chunk.js": "/codehelium/static/js/498.472cd187.chunk.js",
+    "static/js/363.36ca64de.chunk.js": "/codehelium/static/js/363.36ca64de.chunk.js",
+    "static/js/271.30a3e1e4.chunk.js": "/codehelium/static/js/271.30a3e1e4.chunk.js",
+    "static/js/453.de89cf96.chunk.js": "/codehelium/static/js/453.de89cf96.chunk.js",
+    "index.html": "/codehelium/index.html",
+    "main.40ad4ea6.css.map": "/codehelium/static/css/main.40ad4ea6.css.map",
+    "main.b971fc33.js.map": "/codehelium/static/js/main.b971fc33.js.map",
+    "541.cf4a1b33.chunk.js.map": "/codehelium/static/js/541.cf4a1b33.chunk.js.map",
+    "453.de89cf96.chunk.js.map": "/codehelium/static/js/453.de89cf96.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.40ad4ea6.css",
-    "static/js/main.7117b782.js"
+    "static/js/main.b971fc33.js"
   ]
 }
