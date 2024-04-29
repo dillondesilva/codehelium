@@ -1,0 +1,53 @@
+{
+    "name": "codehelium",
+    "version": "0.1.0",
+    "main": "index.js",
+    "module": "index.js",
+    "peerDependencies": {
+      "react": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0",
+      "react-dom": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+    },
+    "dependencies": {
+      "@babel/polyfill": "^7.12.1",
+      "@emotion/styled": "^11.11.5",
+      "@mui/icons-material": "^5.15.15",
+      "@testing-library/jest-dom": "^5.17.0",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^13.5.0",
+      "@uiw/codemirror-theme-vscode": "^4.21.25",
+      "@uiw/react-codemirror": "^4.21.25",
+      "ace-builds": "^1.33.0",
+      "pyodide": "0.23.4",
+      "react-ace": "^11.0.1"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "@babel/cli": "^7.24.1",
+      "@babel/core": "^7.24.4",
+      "@babel/preset-env": "^7.24.4",
+      "@babel/preset-react": "^7.24.1",
+      "babel-plugin-transform-postcss": "^0.3.0",
+      "postcss": "6.0.6",
+      "tailwindcss": "^3.3.2",
+      "webpack": "^5.91.0",
+      "webpack-cli": "^5.1.4"
+    }
+  }
+  
