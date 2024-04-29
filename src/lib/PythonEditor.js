@@ -57,8 +57,6 @@ async function runPyodideExecution(codeString, pyodideInstance) {
 }  
 
 function PythonEditor(props) {
-    console.log("running python editor");
-    // const location = "";
     const [isCodeRunning, setIsCodeRunning] = useState(false);
     const [isConsoleActive, setIsConsoleActive] = useState(false);
     const [consoleValue, setConsoleValue] = useState([]);
@@ -70,6 +68,9 @@ function PythonEditor(props) {
         setIsConsoleActive(true); 
         await runPyodideExecution(editorValue, props.pyodideInstance).then((result) => {
             setConsoleValue(result.logs);
+            if (props.consoleOutputSetter != null) {
+                props.consoleOutputSetter(result.logs);
+            }
         });
 
         setIsCodeRunning(false);
@@ -192,7 +193,8 @@ function PythonEditor(props) {
 }
 
 PythonEditor.defaultProps = {
-    pyodideInstance: null
+    pyodideInstance: null,
+    consoleOutputSetter: null
 };
 
 export default PythonEditor;

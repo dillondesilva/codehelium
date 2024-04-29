@@ -9,10 +9,6 @@ function App() {
   const [myPyodideInstance, setMyPyodideInstance] = useState(null);
 
   useEffect(() => {
-    console.log("Output from my IDE react component is", consoleOutputs);
-  }, [consoleOutputs, setConsoleOutputs])
-
-  useEffect(() => {
     async function createPyodideInstance() {
       let pyodide = await loadPyodide({
         indexURL: window.location.href + "/pyodide"
@@ -23,6 +19,11 @@ function App() {
 
     createPyodideInstance();
   }, []);
+
+  useEffect(() => {
+    console.log("Printing from App...Console output received");
+    console.log(consoleOutputs);
+  }, [consoleOutputs])
 
   return (
     <div>
