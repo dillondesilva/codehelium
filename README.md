@@ -1,72 +1,86 @@
-# WASM Code Editor 
+# codehelium 👾
 
-# Getting Started with Create React App
+Codehelium is a lightweight IDE for the web that compiles and executes your code using Pyodide/Emscripten/Webassembly.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Currently, **only Python code editing is supported** using our React component.
 
-## Available Scripts
+## Installation 🖥️
 
-In the project directory, you can run:
+To get started with using codehelium in your React application run `npm i codehelium`, import the component and you're good to go!
+```jsx
+import PythonEditor from 'codehelium'
+...
+<PythonEditor width="90vw" height="80vh" />
+```
+## More Examples 😎
 
-### `npm start`
+### Obtaining Console Outputs from Parent Components
+Oftentimes, you may desire to obtain the stdout or stderr from user-written code in codehelium IDE components. For a given state variable in your parent component, you can pass the corresponding setter function via the `consoleOutputSetter` prop to utilise console outputs from user-written code in the PythonEditor component.
+```jsx
+import PythonEditor from 'codehelium';
+import { useEffect, useState } from 'react';
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+function App() {
+    const [consoleOutputs, setConsoleOutputs] = useState([]);
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    useEffect(() => {
+        console.log("Printing from App... Console output received");
+        console.log(consoleOutputs);
+    }, [consoleOutputs])
 
-### `npm test`
+    return (
+        <div>
+            <PythonEditor width="90vw" height="80vh" 
+            consoleOutputSetter={setConsoleOutputs} />
+        </div>
+    );
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default App;
+```
+### Using an External Pyodide Instance
+If you have initialised Pyodide elsewhere in your application, you can pass this instance to the `PythonEditor` component by using the `pyodideInstance` prop. The following example demonstrates how to do so:
+```jsx
+import PythonEditor from 'codehelium';
+import { loadPyodide } from 'pyodide';
+import { useEffect, useState } from 'react';
 
-### `npm run build`
+function App() {
+    const [myPyodideInstance, setMyPyodideInstance] = useState(null);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    useEffect(() => {
+        async function createPyodideInstance() {
+            let pyodide = await loadPyodide({
+            indexURL: window.location.href + "/pyodide"
+            });
+            
+            setMyPyodideInstance(pyodide);
+        }
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        // Initialize pyodide instance in parent component
+        createPyodideInstance();
+    }, []);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    return (
+        <div>
+            <div className="w-screen h-screen grid place-content-center">
+                <PythonEditor width="90vw" height="80vh"
+                pyodideInstance={myPyodideInstance}/>
+            </div>
+        </div>
+    );
+}
 
-### `npm run eject`
+export default App;
+```
+This is especially useful for those developing applications that use a singleton model for Pyodide functionality.
+## Guide to Contributing 🫶
+To get started with contributing, fork this repository and then run the following once you have cloned the forked repo:
+```
+npm install
+npm start
+```
+Library components can then be changed by visiting `src/lib/`, with changes reflected in the development server (from running `npm start`). Once complete, send a PR (filled with basic details) to bring your changes into this repo!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Support this Project 💛
+Starring this repo and sending PRs with useful features/improvements are always appreciated and welcomed!
