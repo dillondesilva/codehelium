@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [consoleOutputs, setConsoleOutputs] = useState([]);
-  console.log("Output from my IDE react component is", consoleOutputs);
 
   useEffect(() => {
     console.log("Output from my IDE react component is", consoleOutputs);
@@ -12,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <PythonEditor width="90vw" height="80vh" consoleValue={consoleOutputs} />
+      <PythonEditor width="90vw" height="80vh" consoleOutputSetter={setConsoleOutputs}/>
     </div>
   );
 }

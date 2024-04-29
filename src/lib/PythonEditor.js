@@ -5,7 +5,7 @@ import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 
 import { loadPyodide } from "pyodide";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import TerminalIcon from '@mui/icons-material/Terminal';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -13,33 +13,18 @@ import CodeIcon from '@mui/icons-material/Code';
 import './build.css';
 
 async function runPyodideExecution(codeString, pyodideInstance) {
-    let pyodide;
-    if (pyodideInstance != null) {
-        console.log("Using supplied pyodide instance");
-        pyodide = pyodideInstance;
-    } else {
-        try {
-            pyodide = await loadPyodide({
-                indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
-            });
-        } catch (error) {
-            console.log("Unable to use codehelium at this time.");
-            return;
-        }
-    }
-
     let execData = {
         logs: [],
     }
 
-    pyodide.setStdout({ 
+    pyodideInstance.setStdout({ 
         batched: (msg) => {
             let outputLine = msg;
             execData.logs.push(outputLine);
         } 
     });
 
-    pyodide.setStderr({ 
+    pyodideInstance.setStderr({ 
         batched: (msg) => {
             let outputLine = msg;
             execData.logs.push(outputLine);
@@ -47,7 +32,7 @@ async function runPyodideExecution(codeString, pyodideInstance) {
     });
 
     try {
-        await pyodide.runPythonAsync(codeString);
+        await pyodideInstance.runPythonAsync(codeString);
     } catch (e) {
         let outputLine = e.message;
         execData.logs.push(outputLine);
@@ -61,12 +46,30 @@ function PythonEditor(props) {
     const [isConsoleActive, setIsConsoleActive] = useState(false);
     const [consoleValue, setConsoleValue] = useState([]);
     const [editorValue, setEditorValue] = useState("");
+    const [pyodideInstance, setPyodideInstance] = useState(null);
     const editorRef = useRef('editorRef');
+
+    // Setting the pyodideInstance to execute code with
+    useEffect(() => {
+        async function createPyodideInstance() {
+            if (props.pyodideInstance != null) {
+                setPyodideInstance(props.pyodideInstance);
+            } else {
+                let pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
+                });
+                
+                setPyodideInstance(pyodide);
+            }
+        }
+
+        createPyodideInstance();    
+    }, [props.pyodideInstance]);
 
     const runCode = async () => {
         setIsCodeRunning(true);
         setIsConsoleActive(true); 
-        await runPyodideExecution(editorValue, props.pyodideInstance).then((result) => {
+        await runPyodideExecution(editorValue, pyodideInstance).then((result) => {
             setConsoleValue(result.logs);
             if (props.consoleOutputSetter != null) {
                 props.consoleOutputSetter(result.logs);

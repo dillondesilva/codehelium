@@ -51,10 +51,6 @@
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
-    "babel-plugin-transform-postcss": "^0.3.0",
-    "postcss": "6.0.6",
-    "tailwindcss": "^3.3.2",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "tailwindcss": "^3.3.2"
   }
 }

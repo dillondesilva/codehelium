@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       <div className="w-screen h-screen grid place-content-center">
-        <PythonEditor width="90vw" height="80vh" consoleValue={consoleOutputs} 
+        <PythonEditor width="90vw" height="80vh" consoleOutputSetter={setConsoleOutputs} 
         pyodideInstance={myPyodideInstance}/>
       </div>
     </div>
