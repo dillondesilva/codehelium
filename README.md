@@ -2,7 +2,7 @@
 
 Codehelium is a lightweight IDE for the web that compiles and executes your code using Pyodide/Emscripten/Webassembly.
 
-Currently, **only Python code editing is supported** using our React component.
+It is currently only usable as a React component with **support for Python code editing/execution**.
 
 ## Installation 🖥️
 
