@@ -85,4 +85,4 @@ npm start
 Library components can then be changed by visiting `src/lib/`, with changes reflected in the development server (from running `npm start`). Once complete, send a PR (filled with basic details) to bring your changes into this repo!
 
 ## Support this Project 💛
-Starring this repo and sending PRs with useful features/improvements are always appreciated and welcomed!
+Starring this repo, creating issues and sending PRs with useful features/improvements are always appreciated and welcomed!
