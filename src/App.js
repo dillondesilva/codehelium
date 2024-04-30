@@ -32,7 +32,7 @@ function App() {
         pyodideInstance={myPyodideInstance} />
       </div>
     </div>
-  );
+  );  
 }
 
 export default App;

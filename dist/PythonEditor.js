@@ -7,6 +7,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 require("core-js/modules/es.promise.js");
 require("core-js/modules/web.dom-collections.iterator.js");
+require("core-js/modules/web.url.js");
+require("core-js/modules/web.url.to-json.js");
+require("core-js/modules/web.url-search-params.js");
 var _reactAce = _interopRequireDefault(require("react-ace"));
 require("ace-builds/src-noconflict/mode-python");
 require("ace-builds/src-noconflict/theme-monokai");
@@ -16,6 +19,7 @@ var _react = _interopRequireWildcard(require("react"));
 var _Terminal = _interopRequireDefault(require("@mui/icons-material/Terminal"));
 var _PlayArrow = _interopRequireDefault(require("@mui/icons-material/PlayArrow"));
 var _Code = _interopRequireDefault(require("@mui/icons-material/Code"));
+var _Download = _interopRequireDefault(require("@mui/icons-material/Download"));
 require("./build.css");
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
@@ -77,6 +81,19 @@ function PythonEditor(props) {
     });
     setIsCodeRunning(false);
   };
+  const downloadCode = () => {
+    const blob = new Blob([editorValue], {
+      type: 'text/plain'
+    });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = "codehelium.py";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(href);
+  };
   const handleEditorChange = value => {
     setEditorValue(value);
   };
@@ -132,6 +149,22 @@ function PythonEditor(props) {
       }, "Run"));
     }
   };
+  const renderDownloadCodeBtn = () => {
+    if (props.enableDownload === true) {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        className: "pr-3"
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        className: "rounded-md bg-zinc-700 px-2 \\ border-2 justify-center place-content-center flex flex-row",
+        onClick: () => downloadCode()
+      }, /*#__PURE__*/_react.default.createElement(_Download.default, {
+        className: "pr-1 text-white"
+      }), /*#__PURE__*/_react.default.createElement("p", {
+        className: "text-white"
+      }, "Download")));
+    } else {
+      return;
+    }
+  };
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "h-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -139,7 +172,7 @@ function PythonEditor(props) {
     style: {
       width: props.width
     }
-  }, /*#__PURE__*/_react.default.createElement("div", {
+  }, renderDownloadCodeBtn(), /*#__PURE__*/_react.default.createElement("div", {
     className: "pr-3"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "rounded-md bg-zinc-700 px-2 \\ border-2 justify-center place-content-center flex flex-row",
