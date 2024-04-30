@@ -21,37 +21,23 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function runPyodideExecution(codeString, pyodideInstance) {
-  let pyodide;
-  if (pyodideInstance != null) {
-    console.log("Using supplied pyodide instance");
-    pyodide = pyodideInstance;
-  } else {
-    try {
-      pyodide = await (0, _pyodide.loadPyodide)({
-        indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
-      });
-    } catch (error) {
-      console.log("Unable to use codehelium at this time.");
-      return;
-    }
-  }
   let execData = {
     logs: []
   };
-  pyodide.setStdout({
+  pyodideInstance.setStdout({
     batched: msg => {
       let outputLine = msg;
       execData.logs.push(outputLine);
     }
   });
-  pyodide.setStderr({
+  pyodideInstance.setStderr({
     batched: msg => {
       let outputLine = msg;
       execData.logs.push(outputLine);
     }
   });
   try {
-    await pyodide.runPythonAsync(codeString);
+    await pyodideInstance.runPythonAsync(codeString);
   } catch (e) {
     let outputLine = e.message;
     execData.logs.push(outputLine);
@@ -63,11 +49,27 @@ function PythonEditor(props) {
   const [isConsoleActive, setIsConsoleActive] = (0, _react.useState)(false);
   const [consoleValue, setConsoleValue] = (0, _react.useState)([]);
   const [editorValue, setEditorValue] = (0, _react.useState)("");
+  const [pyodideInstance, setPyodideInstance] = (0, _react.useState)(null);
   const editorRef = (0, _react.useRef)('editorRef');
+
+  // Setting the pyodideInstance to execute code with
+  (0, _react.useEffect)(() => {
+    async function createPyodideInstance() {
+      if (props.pyodideInstance != null) {
+        setPyodideInstance(props.pyodideInstance);
+      } else {
+        let pyodide = await (0, _pyodide.loadPyodide)({
+          indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
+        });
+        setPyodideInstance(pyodide);
+      }
+    }
+    createPyodideInstance();
+  }, [props.pyodideInstance]);
   const runCode = async () => {
     setIsCodeRunning(true);
     setIsConsoleActive(true);
-    await runPyodideExecution(editorValue, props.pyodideInstance).then(result => {
+    await runPyodideExecution(editorValue, pyodideInstance).then(result => {
       setConsoleValue(result.logs);
       if (props.consoleOutputSetter != null) {
         props.consoleOutputSetter(result.logs);
