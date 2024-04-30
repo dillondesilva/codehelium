@@ -165,6 +165,25 @@ function PythonEditor(props) {
         }
     }
 
+    const renderDownloadCodeBtn = () => {
+        if (props.enableDownload === true) {
+            return (
+                <div className="pr-3">
+                    <button
+                        className="rounded-md bg-zinc-700 px-2 \
+                        border-2 justify-center place-content-center flex flex-row"
+                        onClick={() => downloadCode()}
+                    >
+                        <DownloadIcon className="pr-1 text-white" />
+                        <p className="text-white">Download</p>
+                    </button>
+                </div>
+            );
+        } else {
+            return;
+        }
+    }
+
     return (
         <div>
             <div className="h-full">
@@ -174,16 +193,9 @@ function PythonEditor(props) {
                         width: props.width
                     }}
                 >
-                    <div className="pr-3">
-                        <button
-                            className="rounded-md bg-zinc-700 px-2 \
-                            border-2 justify-center place-content-center flex flex-row"
-                            onClick={() => downloadCode()}
-                        >
-                            <DownloadIcon className="pr-1 text-white" />
-                            <p className="text-white">Download</p>
-                        </button>
-                    </div>
+                    {
+                        renderDownloadCodeBtn()
+                    }
                     <div className="pr-3">
                         <button
                             className="rounded-md bg-zinc-700 px-2 \
