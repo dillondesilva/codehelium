@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/dillondesilva.github.io/codehelium/static/css/main.898d780c.css",
-    "main.js": "/dillondesilva.github.io/codehelium/static/js/main.ae5e804d.js",
-    "static/js/464.0d404e22.chunk.js": "/dillondesilva.github.io/codehelium/static/js/464.0d404e22.chunk.js",
-    "static/js/425.941b1be2.chunk.js": "/dillondesilva.github.io/codehelium/static/js/425.941b1be2.chunk.js",
-    "static/js/541.f207e121.chunk.js": "/dillondesilva.github.io/codehelium/static/js/541.f207e121.chunk.js",
-    "static/js/190.d67d1483.chunk.js": "/dillondesilva.github.io/codehelium/static/js/190.d67d1483.chunk.js",
-    "static/js/624.45f08359.chunk.js": "/dillondesilva.github.io/codehelium/static/js/624.45f08359.chunk.js",
-    "static/js/912.87713038.chunk.js": "/dillondesilva.github.io/codehelium/static/js/912.87713038.chunk.js",
-    "static/js/498.b1199d71.chunk.js": "/dillondesilva.github.io/codehelium/static/js/498.b1199d71.chunk.js",
-    "static/js/363.f81e800f.chunk.js": "/dillondesilva.github.io/codehelium/static/js/363.f81e800f.chunk.js",
-    "static/js/271.bb3089a6.chunk.js": "/dillondesilva.github.io/codehelium/static/js/271.bb3089a6.chunk.js",
-    "static/js/453.ce9d6e6f.chunk.js": "/dillondesilva.github.io/codehelium/static/js/453.ce9d6e6f.chunk.js",
-    "index.html": "/dillondesilva.github.io/codehelium/index.html",
-    "main.898d780c.css.map": "/dillondesilva.github.io/codehelium/static/css/main.898d780c.css.map",
-    "main.ae5e804d.js.map": "/dillondesilva.github.io/codehelium/static/js/main.ae5e804d.js.map",
-    "541.f207e121.chunk.js.map": "/dillondesilva.github.io/codehelium/static/js/541.f207e121.chunk.js.map",
-    "453.ce9d6e6f.chunk.js.map": "/dillondesilva.github.io/codehelium/static/js/453.ce9d6e6f.chunk.js.map"
+    "main.css": "/codehelium/static/css/main.898d780c.css",
+    "main.js": "/codehelium/static/js/main.517ffad3.js",
+    "static/js/464.0d404e22.chunk.js": "/codehelium/static/js/464.0d404e22.chunk.js",
+    "static/js/425.941b1be2.chunk.js": "/codehelium/static/js/425.941b1be2.chunk.js",
+    "static/js/541.f207e121.chunk.js": "/codehelium/static/js/541.f207e121.chunk.js",
+    "static/js/190.d67d1483.chunk.js": "/codehelium/static/js/190.d67d1483.chunk.js",
+    "static/js/624.45f08359.chunk.js": "/codehelium/static/js/624.45f08359.chunk.js",
+    "static/js/912.87713038.chunk.js": "/codehelium/static/js/912.87713038.chunk.js",
+    "static/js/498.b1199d71.chunk.js": "/codehelium/static/js/498.b1199d71.chunk.js",
+    "static/js/363.f81e800f.chunk.js": "/codehelium/static/js/363.f81e800f.chunk.js",
+    "static/js/271.bb3089a6.chunk.js": "/codehelium/static/js/271.bb3089a6.chunk.js",
+    "static/js/453.ce9d6e6f.chunk.js": "/codehelium/static/js/453.ce9d6e6f.chunk.js",
+    "index.html": "/codehelium/index.html",
+    "main.898d780c.css.map": "/codehelium/static/css/main.898d780c.css.map",
+    "main.517ffad3.js.map": "/codehelium/static/js/main.517ffad3.js.map",
+    "541.f207e121.chunk.js.map": "/codehelium/static/js/541.f207e121.chunk.js.map",
+    "453.ce9d6e6f.chunk.js.map": "/codehelium/static/js/453.ce9d6e6f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.898d780c.css",
-    "static/js/main.ae5e804d.js"
+    "static/js/main.517ffad3.js"
   ]
 }
