@@ -4,6 +4,8 @@ Codehelium is a lightweight IDE for the web that compiles and executes your code
 
 It is currently only usable as a React component with **support for Python code editing/execution**.
 
+Check out the [demo](https://dillondesilva.github.io/codehelium/)!
+
 ## Installation 🖥️
 
 To get started with using codehelium in your React application run `npm i codehelium`, import the component and you're good to go!
@@ -39,7 +41,7 @@ function App() {
 export default App;
 ```
 ### Using an External Pyodide Instance
-If you have initialised Pyodide elsewhere in your application, you can pass this instance to the `PythonEditor` component by using the `pyodideInstance` prop. The following example demonstrates how to do so:
+By default, the `PythonEditor` component will initialise its own Pyodide instance with the indexURL set to [jsDelivr](https://www.jsdelivr.com/). However if you have initialised Pyodide elsewhere in your application, you can pass this instance to the `PythonEditor` component by using the `pyodideInstance` prop. The following example demonstrates how to do so:
 ```jsx
 import PythonEditor from 'codehelium';
 import { loadPyodide } from 'pyodide';
@@ -73,7 +75,7 @@ function App() {
 
 export default App;
 ```
-This is especially useful for those developing applications that use a singleton model for Pyodide functionality.
+This is a **good practice** as it allows you to have full control of the Pyodide instance whilst also being able to leverage the component's capabilities. Consider using this when developing applications that use a [singleton model for Pyodide](https://adamemery.dev/articles/pyodide-react) functionality.
 ## Guide to Contributing 🫶
 To get started with contributing, fork this repository and then run the following once you have cloned the forked repo:
 ```
@@ -83,4 +85,4 @@ npm start
 Library components can then be changed by visiting `src/lib/`, with changes reflected in the development server (from running `npm start`). Once complete, send a PR (filled with basic details) to bring your changes into this repo!
 
 ## Support this Project 💛
-Starring this repo and sending PRs with useful features/improvements are always appreciated and welcomed!
+Starring this repo, creating issues and sending PRs with useful features/improvements are always appreciated and welcomed!
