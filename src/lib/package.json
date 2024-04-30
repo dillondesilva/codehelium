@@ -1,6 +1,6 @@
 {
     "name": "codehelium",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "author": "Dillon de Silva",
     "main": "index.js",
     "module": "index.js",

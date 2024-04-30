@@ -10,6 +10,7 @@ import React, { useEffect, useRef, useState } from "react";
 import TerminalIcon from '@mui/icons-material/Terminal';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import CodeIcon from '@mui/icons-material/Code';
+import DownloadIcon from '@mui/icons-material/Download';
 import './build.css';
 
 async function runPyodideExecution(codeString, pyodideInstance) {
@@ -17,18 +18,18 @@ async function runPyodideExecution(codeString, pyodideInstance) {
         logs: [],
     }
 
-    pyodideInstance.setStdout({ 
+    pyodideInstance.setStdout({
         batched: (msg) => {
             let outputLine = msg;
             execData.logs.push(outputLine);
-        } 
+        }
     });
 
-    pyodideInstance.setStderr({ 
+    pyodideInstance.setStderr({
         batched: (msg) => {
             let outputLine = msg;
             execData.logs.push(outputLine);
-        } 
+        }
     });
 
     try {
@@ -39,7 +40,7 @@ async function runPyodideExecution(codeString, pyodideInstance) {
     }
 
     return execData;
-}  
+}
 
 function PythonEditor(props) {
     const [isCodeRunning, setIsCodeRunning] = useState(false);
@@ -58,17 +59,17 @@ function PythonEditor(props) {
                 let pyodide = await loadPyodide({
                     indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
                 });
-                
+
                 setPyodideInstance(pyodide);
             }
         }
 
-        createPyodideInstance();    
+        createPyodideInstance();
     }, [props.pyodideInstance]);
 
     const runCode = async () => {
         setIsCodeRunning(true);
-        setIsConsoleActive(true); 
+        setIsConsoleActive(true);
         await runPyodideExecution(editorValue, pyodideInstance).then((result) => {
             setConsoleValue(result.logs);
             if (props.consoleOutputSetter != null) {
@@ -79,6 +80,18 @@ function PythonEditor(props) {
         setIsCodeRunning(false);
     }
 
+    const downloadCode = () => {
+        const blob = new Blob([editorValue], { type: 'text/plain' });
+        const href = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = href;
+        link.download = "codehelium.py";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(href);
+    }
+
     const handleEditorChange = (value) => {
         setEditorValue(value);
     }
@@ -86,7 +99,7 @@ function PythonEditor(props) {
     const renderMainToolComponent = () => {
         if (isConsoleActive) {
             return (
-                <div 
+                <div
                     className={`p-4 bg-[#272822]
                     rounded-b-[12px] overflow-y-scroll`}
                     style={{
@@ -106,26 +119,26 @@ function PythonEditor(props) {
         } else {
             return (
                 <AceEditor
-                height={props.height}
-                width={props.width}
-                mode="python"
-                theme="monokai"
-                fontSize="16px"
-                highlightActiveLine={true}
-                value={editorValue}
-                ref={editorRef}
-                onChange={(value) => handleEditorChange(value)}
-                setOptions={{
-                    showLineNumbers: true,
-                    tabSize: 2
-                }}
-                showPrintMargin={false}
-                style={{
-                    borderBottomLeftRadius: "12px",
-                    borderBottomRightRadius: "12px"
-                }}
+                    height={props.height}
+                    width={props.width}
+                    mode="python"
+                    theme="monokai"
+                    fontSize="16px"
+                    highlightActiveLine={true}
+                    value={editorValue}
+                    ref={editorRef}
+                    onChange={(value) => handleEditorChange(value)}
+                    setOptions={{
+                        showLineNumbers: true,
+                        tabSize: 2
+                    }}
+                    showPrintMargin={false}
+                    style={{
+                        borderBottomLeftRadius: "12px",
+                        borderBottomRightRadius: "12px"
+                    }}
                 />
-            ) 
+            )
         }
     }
 
@@ -133,7 +146,7 @@ function PythonEditor(props) {
         if (isCodeRunning) {
             return (
                 <div
-                className="inline-block h-6 w-6 animate-spin rounded-full border-4 \
+                    className="inline-block h-6 w-6 animate-spin rounded-full border-4 \
                 border-solid border-current border-e-transparent align-center border-cyan-400 \
                 text-surface motion-reduce:animate-[spin_1s_linear_infinite] dark:text-white"
                 />
@@ -141,28 +154,50 @@ function PythonEditor(props) {
         } else {
             return (
                 <button
-                className="rounded-md bg-zinc-700 flex flex-row px-2 py-[0.5] \
+                    className="rounded-md bg-zinc-700 flex flex-row px-2 py-[0.5] \
                 justify-center border-2 place-content-center"
-                onClick={runCode}
+                    onClick={runCode}
                 >
                     <PlayArrowIcon className="pr-1 text-white" />
                     <p className="text-white">Run</p>
-                </button> 
+                </button>
             )
         }
     }
-      
+
+    const renderDownloadCodeBtn = () => {
+        if (props.enableDownload === true) {
+            return (
+                <div className="pr-3">
+                    <button
+                        className="rounded-md bg-zinc-700 px-2 \
+                        border-2 justify-center place-content-center flex flex-row"
+                        onClick={() => downloadCode()}
+                    >
+                        <DownloadIcon className="pr-1 text-white" />
+                        <p className="text-white">Download</p>
+                    </button>
+                </div>
+            );
+        } else {
+            return;
+        }
+    }
+
     return (
         <div>
             <div className="h-full">
-                <div 
-                className={`h-[6.5vh] bg-zinc-700 rounded-t-[12px] flex justify-end space-evenly items-center`}
-                style={{
-                    width: props.width
-                }}  
+                <div
+                    className={`h-[6.5vh] bg-zinc-700 rounded-t-[12px] flex justify-end space-evenly items-center`}
+                    style={{
+                        width: props.width
+                    }}
                 >
-                     <div className="pr-3">
-                        <button 
+                    {
+                        renderDownloadCodeBtn()
+                    }
+                    <div className="pr-3">
+                        <button
                             className="rounded-md bg-zinc-700 px-2 \
                             border-2 justify-center place-content-center flex flex-row"
                             onClick={() => setIsConsoleActive(false)}
@@ -172,7 +207,7 @@ function PythonEditor(props) {
                         </button>
                     </div>
                     <div className="pr-3">
-                        <button 
+                        <button
                             className="rounded-md bg-zinc-700 px-2 \
                             border-2 justify-center place-content-center flex flex-row"
                             onClick={() => setIsConsoleActive(true)}
