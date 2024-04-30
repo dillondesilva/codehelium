@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/codehelium/static/css/main.898d780c.css",
-    "main.js": "/codehelium/static/js/main.517ffad3.js",
+    "main.js": "/codehelium/static/js/main.283f90c8.js",
     "static/js/464.0d404e22.chunk.js": "/codehelium/static/js/464.0d404e22.chunk.js",
     "static/js/425.941b1be2.chunk.js": "/codehelium/static/js/425.941b1be2.chunk.js",
     "static/js/541.f207e121.chunk.js": "/codehelium/static/js/541.f207e121.chunk.js",
@@ -14,12 +14,12 @@
     "static/js/453.ce9d6e6f.chunk.js": "/codehelium/static/js/453.ce9d6e6f.chunk.js",
     "index.html": "/codehelium/index.html",
     "main.898d780c.css.map": "/codehelium/static/css/main.898d780c.css.map",
-    "main.517ffad3.js.map": "/codehelium/static/js/main.517ffad3.js.map",
+    "main.283f90c8.js.map": "/codehelium/static/js/main.283f90c8.js.map",
     "541.f207e121.chunk.js.map": "/codehelium/static/js/541.f207e121.chunk.js.map",
     "453.ce9d6e6f.chunk.js.map": "/codehelium/static/js/453.ce9d6e6f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.898d780c.css",
-    "static/js/main.517ffad3.js"
+    "static/js/main.283f90c8.js"
   ]
 }
