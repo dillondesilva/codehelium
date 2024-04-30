@@ -4,7 +4,7 @@ Codehelium is a lightweight IDE for the web that compiles and executes your code
 
 It is currently only usable as a React component with **support for Python code editing/execution**.
 
-Check out the [demo](https://dillondesilva.github.io/codehelium/)!
+Check out the [demo](https://dillondesilva.github.io/codehelium/) - it is quite "bloat-free" and **can also serve as a useful site for if you need to quickly hack up and test concepts/ideas!**
 
 ## Installation 🖥️
 
@@ -83,6 +83,17 @@ npm install
 npm start
 ```
 Library components can then be changed by visiting `src/lib/`, with changes reflected in the development server (from running `npm start`). Once complete, send a PR (filled with basic details) to bring your changes into this repo!
+
+## Additional Notes 📝
+
+codehelium is great for applications such as:
+- Educational tools requiring users to write code and get feedback
+- Building quick and personalised, web-based IDEs for you to quickly access and test your ideas
+
+Future work includes:
+- Support importing external Python packages in the editor
+- Ability to code in other languages
+- Controlling editor themes and custom-styling
 
 ## Support this Project 💛
 Starring this repo, creating issues and sending PRs with useful features/improvements are always appreciated and welcomed!
