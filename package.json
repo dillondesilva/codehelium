@@ -24,9 +24,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib/ --out-dir dist --copy-files",
+    "build": "rm -rf dist && npm run tw && NODE_ENV=production babel src/lib/ --out-dir dist --copy-files",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tw": "tailwindcss -o ./src/lib/build.css"
   },
   "eslintConfig": {
     "extends": [
