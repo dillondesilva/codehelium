@@ -52,7 +52,7 @@ function PythonEditor(props) {
   const [isCodeRunning, setIsCodeRunning] = (0, _react.useState)(false);
   const [isConsoleActive, setIsConsoleActive] = (0, _react.useState)(false);
   const [consoleValue, setConsoleValue] = (0, _react.useState)([]);
-  const [editorValue, setEditorValue] = (0, _react.useState)("");
+  const [editorValue, setEditorValue] = (0, _react.useState)(props.initialValue);
   const [pyodideInstance, setPyodideInstance] = (0, _react.useState)(null);
   const editorRef = (0, _react.useRef)('editorRef');
 
@@ -165,6 +165,9 @@ function PythonEditor(props) {
       return;
     }
   };
+  const setEditorText = value => {
+    setEditorValue(value);
+  };
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "h-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -196,6 +199,7 @@ function PythonEditor(props) {
 }
 PythonEditor.defaultProps = {
   pyodideInstance: null,
-  consoleOutputSetter: null
+  consoleOutputSetter: null,
+  initialValue: ""
 };
 var _default = exports.default = PythonEditor;

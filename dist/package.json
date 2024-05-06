@@ -1,9 +1,22 @@
 {
     "name": "codehelium",
-    "version": "0.1.6",
+    "version": "0.1.9",
     "author": "Dillon de Silva",
+    "description": "A lightweight editor component that compiles, executes and returns the outputs of any user-written code via Pyodide/Emscripten/Webassembly.",
+    "keywords": [
+        "editor",
+        "ide",
+        "code",
+        "react",
+        "pyodide",
+        "webassembly"
+    ],
     "main": "index.js",
     "module": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dillondesilva/codehelium.git"
+    },
     "peerDependencies": {
         "react": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0"

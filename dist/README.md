@@ -1,6 +1,6 @@
 # codehelium 👾
 
-Codehelium is a lightweight IDE for the web that compiles and executes your code using Pyodide/Emscripten/Webassembly.
+Codehelium is a lightweight editor component that compiles, executes and returns the outputs of any user-written code via Pyodide/Emscripten/Webassembly.
 
 It is currently only usable as a React component with **support for Python code editing/execution**.
 
@@ -17,7 +17,7 @@ import PythonEditor from 'codehelium'
 ## More Examples 😎
 
 ### Obtaining Console Outputs from Parent Components
-Oftentimes, you may desire to obtain the stdout or stderr from user-written code in codehelium IDE components. For a given state variable in your parent component, you can pass the corresponding setter function via the `consoleOutputSetter` prop to utilise console outputs from user-written code in the PythonEditor component.
+Oftentimes, you may desire to obtain the stdout or stderr from user-written code in codehelium editor components. For a given state variable in your parent component, you can pass the corresponding setter function via the `consoleOutputSetter` prop to utilise console outputs from user-written code in the PythonEditor component.
 ```jsx
 import PythonEditor from 'codehelium';
 import { useEffect, useState } from 'react';
@@ -88,7 +88,7 @@ Library components can then be changed by visiting `src/lib/`, with changes refl
 
 codehelium is great for applications such as:
 - Educational tools requiring users to write code and get feedback
-- Building quick and personalised, web-based IDEs for you to quickly access and test your ideas
+- Building quick and personalised, web-based editors for you to quickly access and test your ideas
 
 Future work includes:
 - Support importing external Python packages in the editor

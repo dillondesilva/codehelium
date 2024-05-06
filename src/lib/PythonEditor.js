@@ -46,7 +46,7 @@ function PythonEditor(props) {
     const [isCodeRunning, setIsCodeRunning] = useState(false);
     const [isConsoleActive, setIsConsoleActive] = useState(false);
     const [consoleValue, setConsoleValue] = useState([]);
-    const [editorValue, setEditorValue] = useState("");
+    const [editorValue, setEditorValue] = useState(props.initialValue);
     const [pyodideInstance, setPyodideInstance] = useState(null);
     const editorRef = useRef('editorRef');
 
@@ -184,6 +184,10 @@ function PythonEditor(props) {
         }
     }
 
+    const setEditorText = (value) => {
+        setEditorValue(value)
+    }
+
     return (
         <div>
             <div className="h-full">
@@ -232,7 +236,10 @@ function PythonEditor(props) {
 
 PythonEditor.defaultProps = {
     pyodideInstance: null,
-    consoleOutputSetter: null
+    consoleOutputSetter: null,
+    initialValue: "",
+    editorValue: null,
+    onChange: null
 };
 
 export default PythonEditor;
