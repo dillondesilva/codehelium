@@ -68,9 +68,11 @@ function PythonEditor(props) {
     }, [props.pyodideInstance]);
 
     const runCode = async () => {
+        const currentEditorValue = getCurrentEditorValue();
         setIsCodeRunning(true);
+        setConsoleValue([]);
         setIsConsoleActive(true);
-        await runPyodideExecution(editorValue, pyodideInstance).then((result) => {
+        await runPyodideExecution(currentEditorValue, pyodideInstance).then((result) => {
             setConsoleValue(result.logs);
             if (props.consoleOutputSetter != null) {
                 props.consoleOutputSetter(result.logs);
@@ -92,8 +94,20 @@ function PythonEditor(props) {
         URL.revokeObjectURL(href);
     }
 
-    const handleEditorChange = (value) => {
-        setEditorValue(value);
+    const handleEditorChange = async (value) => {
+        if (props.editorValueSetter != null) {
+            await props.editorValueSetter(value);
+        } else {
+            setEditorValue(value); 
+        }
+    }
+
+    const getCurrentEditorValue = () => {
+        if (props.editorValue != null) {
+            return props.editorValue;
+        }
+
+        return editorValue;
     }
 
     const renderMainToolComponent = () => {
@@ -117,6 +131,7 @@ function PythonEditor(props) {
                 </div>
             )
         } else {
+            const currentEditorValue = getCurrentEditorValue();
             return (
                 <AceEditor
                     height={props.height}
@@ -125,7 +140,7 @@ function PythonEditor(props) {
                     theme="monokai"
                     fontSize="16px"
                     highlightActiveLine={true}
-                    value={editorValue}
+                    value={currentEditorValue}
                     ref={editorRef}
                     onChange={(value) => handleEditorChange(value)}
                     setOptions={{
@@ -239,7 +254,7 @@ PythonEditor.defaultProps = {
     consoleOutputSetter: null,
     initialValue: "",
     editorValue: null,
-    onChange: null
+    editorValueSetter: null
 };
 
 export default PythonEditor;

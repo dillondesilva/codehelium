@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [consoleOutputs, setConsoleOutputs] = useState([]);
-  console.log("Output from my IDE react component is", consoleOutputs);
+  const [editorText, setEditorText] = useState("print('hello')");
   const [myPyodideInstance, setMyPyodideInstance] = useState(null);
 
   useEffect(() => {
@@ -28,8 +28,13 @@ function App() {
   return (
     <div>
       <div className="w-screen h-screen grid place-content-center">
-        <PythonEditor width="90vw" height="80vh" consoleOutputSetter={setConsoleOutputs} 
-        pyodideInstance={myPyodideInstance} initialValue={`print("hello, world!")`}/>
+        <PythonEditor width="90vw" height="80vh" 
+        consoleOutputSetter={setConsoleOutputs} 
+        pyodideInstance={myPyodideInstance} 
+        initialValue={`print("hello, world!")`}
+        editorValue={editorText}
+        editorValueSetter={setEditorText}
+        />
       </div>
     </div>
   );  
