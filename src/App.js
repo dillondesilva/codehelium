@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     async function createPyodideInstance() {
       let pyodide = await loadPyodide({
-        indexURL: window.location.href + "/pyodide"
+        indexURL: `https://cdn.jsdelivr.net/pyodide/v0.23.4/full/` // point to Pyodide libraries hosted on jsDelivr CDN
       });
       
       setMyPyodideInstance(pyodide);
