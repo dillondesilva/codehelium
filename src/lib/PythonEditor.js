@@ -13,10 +13,11 @@ import CodeIcon from '@mui/icons-material/Code';
 import DownloadIcon from '@mui/icons-material/Download';
 import './build.css';
 
+
 async function runPyodideExecution(codeString, pyodideInstance) {
     let execData = {
         logs: [],
-    }
+    }    
 
     pyodideInstance.setStdout({
         batched: (msg) => {
@@ -31,6 +32,15 @@ async function runPyodideExecution(codeString, pyodideInstance) {
             execData.logs.push(outputLine);
         }
     });
+
+    try{
+        // load from specific URL from Pyodide - if integrity issues check that correct version and correct URL
+        await pyodideInstance.loadPackagesFromImports(codeString);
+    } catch (e) {
+        let outputLine = e.message; // if fails do not run the code, output the error
+        execData.logs.push(outputLine);
+        return execData;
+    }
 
     try {
         await pyodideInstance.runPythonAsync(codeString);
@@ -57,7 +67,7 @@ function PythonEditor(props) {
                 setPyodideInstance(props.pyodideInstance);
             } else {
                 let pyodide = await loadPyodide({
-                    indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
+                    indexURL: `https://cdn.jsdelivr.net/pyodide/v0.23.4/full/`
                 });
 
                 setPyodideInstance(pyodide);
