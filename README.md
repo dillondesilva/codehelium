@@ -79,7 +79,8 @@ This is a **good practice** as it allows you to have full control of the Pyodide
 
 ## Using Libraries
 
-In order to import any libraries, the folder at the url specified at `indexURL` when creating the pyodide instance (using `loadPyodide`) must contain the required `.whl` files for each library you are using. In order to get all of the libraries that pyodide has to offer, you can use `indexURL='https://cdn.jsdelivr.net/pyodide/v0.23.4/full/'` (This is the default if no instance is given). 
+In order to import any libraries, the folder at the url specified at `indexURL` when creating the pyodide instance (using `loadPyodide`) must contain the required `.whl` files for each library you are using. In order to get all of the libraries that pyodide has to offer, you can use `indexURL='https://cdn.jsdelivr.net/pyodide/v0.23.4/full/'` (This is the default if no instance is given), or you can [Download all packages from here](https://github.com/pyodide/pyodide/releases) (Make sure to use download 
+the right version). 
 
 
 ## Guide to Contributing 🫶
