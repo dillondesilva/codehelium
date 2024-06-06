@@ -76,6 +76,12 @@ function App() {
 export default App;
 ```
 This is a **good practice** as it allows you to have full control of the Pyodide instance whilst also being able to leverage the component's capabilities. Consider using this when developing applications that use a [singleton model for Pyodide](https://adamemery.dev/articles/pyodide-react) functionality.
+
+## Using Libraries
+
+In order to import any libraries, the folder at the url specified at `indexURL` when creating the pyodide instance (using `loadPyodide`) must contain the required `.whl` files for each library you are using. In order to get all of the libraries that pyodide has to offer, you can use `indexURL='https://cdn.jsdelivr.net/pyodide/v0.23.4/full/'` (This is the default if no instance is given). 
+
+
 ## Guide to Contributing 🫶
 To get started with contributing, fork this repository and then run the following once you have cloned the forked repo:
 ```

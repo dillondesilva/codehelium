@@ -67,7 +67,7 @@ function PythonEditor(props) {
                 setPyodideInstance(props.pyodideInstance);
             } else {
                 let pyodide = await loadPyodide({
-                    indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.23.4/"
+                    indexURL: `https://cdn.jsdelivr.net/pyodide/v0.23.4/full/`
                 });
 
                 setPyodideInstance(pyodide);
